@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fangzhe.dao.LinkedManMapper">
+     <resultMap id="linkedMan" type="com.fangzhe.pojo.LinkedMan">
+      <result column="id" property="id"/>
+      <result column="name" property="name"/>
+      <result column="address" property="address"/>
+      <result column="phone_number" property="phoneNumber"/>
+     </resultMap>
+
+
+<insert id="addLinkedMan" parameterType="com.fangzhe.pojo.LinkedMan">
+    INSERT INTO linked_man(id,name,address,phone_number)
+    VALUES(#{id},#{name},#{address},#{phoneNumber})
+</insert>
+ <delete id="deleteLinkedManById" parameterType="int">
+    delete from linked_man where id = #{id}
+ </delete>
+ <update id="updateLinkedMan" parameterType="linkedMan">
+    UPDATE
+    linked_man
+    SET name = #{name},phone_number = #{phoneNumber},address = #{address}
+    where id = #{id}
+ </update>
+ <select id="queryAllLinkedMan" resultMap="linkedMan">
+     SELECT * FROM linked_man
+ </select>
+ <select id="queryLinkedManById" resultMap="linkedMan">
+    SELECT
+    *
+    FROM
+    linked_man
+    where id = #{id}
+ </select>
+</mapper>
